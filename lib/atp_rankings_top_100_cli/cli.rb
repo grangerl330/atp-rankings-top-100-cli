@@ -2,17 +2,23 @@ class AtpRankingsTop100Cli::CLI
 
   def call
     puts "Welcome to ATP Rankings Top 100!"
-    x = 1
-    100.times do |x|
-      AtpRankingsTop100Cli::Player.new("#{x}", "#{x+1}", "#{x+10}", "#{x+1000}")
-    end
+    create_players
+    puts
     start
+  end
+
+  def create_players
+    100.times do |i|
+      AtpRankingsTop100Cli::Player.scrape_from_index(i)
+    end
   end
 
   def start
     range_choice
     if @@input > 0
+      puts
       list_range(@@input)
+      puts
       menu
     else
       puts "Invalid Input"
