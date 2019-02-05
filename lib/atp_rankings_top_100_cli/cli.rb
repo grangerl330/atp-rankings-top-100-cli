@@ -28,7 +28,7 @@ class AtpRankingsTop100Cli::CLI
       if @@input.to_i > 0
         more_info(@@input.to_i)
         puts
-        sleep(3)
+        sleep(5)
         start
       elsif @@input == "exit"
         goodbye
@@ -47,6 +47,7 @@ class AtpRankingsTop100Cli::CLI
 
   def range_choice
     puts "Which range would you like to see?"
+    puts
     puts "1-10"
     puts "11-20"
     puts "21-30"
@@ -99,6 +100,7 @@ class AtpRankingsTop100Cli::CLI
   end
 
   def goodbye
+    puts
     puts "Thank you for using ATP Rankings Top 100!"
   end
 

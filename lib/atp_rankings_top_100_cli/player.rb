@@ -13,7 +13,7 @@ class AtpRankingsTop100Cli::Player
 
   def self.scrape_from_index(index)
     doc = Nokogiri::HTML(open("https://www.atptour.com/en/rankings/singles"))
-    country_array = doc.css('.country-cell img').collect{ |i| i['alt'] }
+    country_array = doc.css('.country-cell img').collect{|i| i['alt']}
     player = self.new
     player.name = doc.css("td.player-cell")[index].text.strip
     player.points = doc.css("td.points-cell")[index].text.strip
