@@ -4,7 +4,7 @@ class AtpRankingsTop100Cli::CLI
     puts "Welcome to ATP Rankings Top 100!"
     puts
     puts "Type exit at any time to exit the program"
-    puts 
+    puts
     puts "Please wait while the list loads..."
     create_players
     puts
@@ -93,6 +93,7 @@ class AtpRankingsTop100Cli::CLI
   def more_info(input)
     puts "Name: #{AtpRankingsTop100Cli::Player.all[input-1].name}"
     puts "Age: #{AtpRankingsTop100Cli::Player.all[input-1].age}"
+    puts "Country: #{AtpRankingsTop100Cli::Player.all[input-1].country}"
     puts "Rank: #{AtpRankingsTop100Cli::Player.all[input-1].rank}"
     puts "Points: #{AtpRankingsTop100Cli::Player.all[input-1].points}"
   end
