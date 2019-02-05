@@ -2,6 +2,8 @@ class AtpRankingsTop100Cli::CLI
 
   def call
     puts "Welcome to ATP Rankings Top 100!"
+    puts
+    puts "Please wait while the list loads..."
     create_players
     puts
     start
@@ -15,11 +17,25 @@ class AtpRankingsTop100Cli::CLI
 
   def start
     range_choice
-    if @@input > 0
+    if @@input.to_i > 0
       puts
-      list_range(@@input)
+      list_range(@@input.to_i)
       puts
       menu
+      puts
+      if @@input.to_i > 0
+        more_info(@@input.to_i)
+        puts
+        start
+      elsif @@input == "exit"
+        goodbye
+      else
+        puts "Invalid Input"
+        puts
+        start
+      end
+    elsif @@input == "exit"
+      goodbye
     else
       puts "Invalid Input"
       start
@@ -38,7 +54,8 @@ class AtpRankingsTop100Cli::CLI
     puts "71-80"
     puts "81-90"
     puts "91-100"
-    @@input = gets.strip.to_i
+    puts
+    @@input = gets.strip
   end
 
   def list_range(input)
@@ -66,7 +83,19 @@ class AtpRankingsTop100Cli::CLI
   end
 
   def menu
-    puts "Enter player name or number for more information:"
+    puts "Enter player number for more information:"
+    @@input = gets.strip
+  end
+
+  def more_info(input)
+    puts "Name: #{AtpRankingsTop100Cli::Player.all[input-1].name}"
+    puts "Age: #{AtpRankingsTop100Cli::Player.all[input-1].age}"
+    puts "Rank: #{AtpRankingsTop100Cli::Player.all[input-1].rank}"
+    puts "Points: #{AtpRankingsTop100Cli::Player.all[input-1].points}"
+  end
+
+  def goodbye
+    puts "Thank you for using ATP Rankings Top 100!"
   end
 
 end
