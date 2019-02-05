@@ -19,7 +19,7 @@ class AtpRankingsTop100Cli::CLI
 
   def start
     range_choice
-    if @@input.to_i > 0
+    if (1..100).include?(@@input.to_i)
       puts
       list_range(@@input.to_i)
       puts
@@ -40,7 +40,9 @@ class AtpRankingsTop100Cli::CLI
     elsif @@input == "exit"
       goodbye
     else
+      puts
       puts "Invalid Input"
+      puts 
       start
     end
   end
