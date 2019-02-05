@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby
+
+require_relative 'atp_rankings_top_100_cli'
