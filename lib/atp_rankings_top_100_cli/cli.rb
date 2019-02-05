@@ -3,6 +3,8 @@ class AtpRankingsTop100Cli::CLI
   def call
     puts "Welcome to ATP Rankings Top 100!"
     puts
+    puts "Type exit at any time to exit the program"
+    puts 
     puts "Please wait while the list loads..."
     create_players
     puts
