@@ -2,6 +2,10 @@ class AtpRankingsTop100Cli::CLI
 
   def call
     puts "Welcome to ATP Rankings Top 100!"
+    x = 1
+    100.times do |x|
+      AtpRankingsTop100Cli::Player.new("#{x}", "#{x+1}", "#{x+10}", "#{x+1000}")
+    end
     start
   end
 
@@ -33,25 +37,25 @@ class AtpRankingsTop100Cli::CLI
 
   def list_range(input)
     if (1..10).include?(input)
-      AtpRankings::Player.all[0..9].each_with_index {|player, index| puts "#{index+1}. #{player.name}"}
+      AtpRankingsTop100Cli::Player.all[0..9].each_with_index {|player, index| puts "#{index+1}. #{player.name}"}
     elsif (11..20).include?(input)
-      AtpRankings::Player.all[10..19].each_with_index {|player, index| puts "#{index+1}. #{player.name}"}
+      AtpRankingsTop100Cli::Player.all[10..19].each_with_index {|player, index| puts "#{index+10}. #{player.name}"}
     elsif (21..30).include?(input)
-      AtpRankings::Player.all[20..29].each_with_index {|player, index| puts "#{index+1}. #{player.name}"}
+      AtpRankingsTop100Cli::Player.all[20..29].each_with_index {|player, index| puts "#{index+20}. #{player.name}"}
     elsif (31..40).include?(input)
-      AtpRankings::Player.all[30..39].each_with_index {|player, index| puts "#{index+1}. #{player.name}"}
+      AtpRankingsTop100Cli::Player.all[30..39].each_with_index {|player, index| puts "#{index+30}. #{player.name}"}
     elsif (41..50).include?(input)
-      AtpRankings::Player.all[40..49].each_with_index {|player, index| puts "#{index+1}. #{player.name}"}
+      AtpRankingsTop100Cli::Player.all[40..49].each_with_index {|player, index| puts "#{index+40}. #{player.name}"}
     elsif (51..60).include?(input)
-      AtpRankings::Player.all[50..59].each_with_index {|player, index| puts "#{index+1}. #{player.name}"}
+      AtpRankingsTop100Cli::Player.all[50..59].each_with_index {|player, index| puts "#{index+50}. #{player.name}"}
     elsif (61..70).include?(input)
-      AtpRankings::Player.all[60..69].each_with_index {|player, index| puts "#{index+1}. #{player.name}"}
+      AtpRankingsTop100Cli::Player.all[60..69].each_with_index {|player, index| puts "#{index+60}. #{player.name}"}
     elsif (71..80).include?(input)
-      AtpRankings::Player.all[70..79].each_with_index {|player, index| puts "#{index+1}. #{player.name}"}
+      AtpRankingsTop100Cli::Player.all[70..79].each_with_index {|player, index| puts "#{index+70}. #{player.name}"}
     elsif (81..90).include?(input)
-      AtpRankings::Player.all[80..89].each_with_index {|player, index| puts "#{index+1}. #{player.name}"}
+      AtpRankingsTop100Cli::Player.all[80..89].each_with_index {|player, index| puts "#{index+80}. #{player.name}"}
     elsif (91..100).include?(input)
-      AtpRankings::Player.all[90..99].each_with_index {|player, index| puts "#{index+1}. #{player.name}"}
+      AtpRankingsTop100Cli::Player.all[90..99].each_with_index {|player, index| puts "#{index+90}. #{player.name}"}
     end
   end
 

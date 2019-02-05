@@ -1,14 +1,13 @@
 class AtpRankingsTop100Cli::Player
-  attr_accessor :name, :rank, :age, :points, :country
+  attr_accessor :name, :rank, :age, :points
 
   @@all= []
 
-  def initialize(name, rank, age, points, country)
+  def initialize(name, rank, age, points)
     @name = name
     @rank = rank
     @age = age
     @points = points
-    @country = country
     @@all << self
   end
 
