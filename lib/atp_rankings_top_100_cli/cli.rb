@@ -26,6 +26,7 @@ class AtpRankingsTop100Cli::CLI
       if @@input.to_i > 0
         more_info(@@input.to_i)
         puts
+        sleep(3)
         start
       elsif @@input == "exit"
         goodbye
