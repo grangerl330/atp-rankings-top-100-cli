@@ -25,7 +25,7 @@ class AtpRankingsTop100Cli::CLI
       puts
       menu
       puts
-      if @@input.to_i > 0
+      if (1..100).include?(@@input.to_i)
         more_info(@@input.to_i)
         puts
         sleep(5)
@@ -42,7 +42,7 @@ class AtpRankingsTop100Cli::CLI
     else
       puts
       puts "Invalid Input"
-      puts 
+      puts
       start
     end
   end
