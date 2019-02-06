@@ -12,7 +12,7 @@ class AtpRankingsTop100Cli::CLI
 
   def create_players
     100.times do |i|
-      AtpRankingsTop100Cli::Player.scrape_from_index(i)
+      AtpRankingsTop100Cli::Scraper.new.scrape_from_index(i)
     end
   end
 
