@@ -1,18 +1,17 @@
 class AtpRankingsTop100Cli::Scraper
 
-  def scrape_from_index(index)
+  def scrape_players
     @doc = Nokogiri::HTML(open("https://www.atptour.com/en/rankings/singles"))
-    @country_array = @doc.css(".country-cell img").collect{|i| i['alt']}
-    @bio_link_array = @doc.css(".player-cell a").collect{|i| "https://www.atptour.com" + i['href']}
-
-    player = AtpRankingsTop100Cli::Player.new
-    player.name = @doc.css(".player-cell")[index].text.strip
-    player.points = @doc.css(".points-cell")[index].text.strip
-    player.age = @doc.css(".age-cell")[index].text.strip
-    player.country = @country_array[index]
-    player.rank = "#{index+1}"
-    player.num_tourns_played = @doc.css(".tourn-cell")[index].text.strip
-    player.bio_link = @bio_link_array[index]
+    @doc.search("tbody tr").each do |player_tr|
+      player = AtpRankingsTop100Cli::Player.new
+      player.name = player_tr.search(".player-cell").text.strip
+      player.points = player_tr.search(".points-cell").text.strip
+      player.age = player_tr.search(".age-cell").text.strip
+      player.rank = player_tr.search(".rank-cell").text.strip
+      player.country = player_tr.search(".country-cell img").attr('alt')
+      player.num_tourns_played = player_tr.search(".tourn-cell").text.strip
+      player.bio_link = "https://www.atptour.com#{player_tr.search(".player-cell a").attr('href')}"
+    end
   end
 
 end

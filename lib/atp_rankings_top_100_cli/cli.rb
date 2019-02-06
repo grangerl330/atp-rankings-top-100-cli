@@ -4,16 +4,8 @@ class AtpRankingsTop100Cli::CLI
     puts "Welcome to ATP Rankings Top 100!"
     puts
     puts "Type exit at any time to exit the program"
-    puts
-    puts "Please wait while the list loads..."
-    create_players
+    AtpRankingsTop100Cli::Scraper.new.scrape_players
     start
-  end
-
-  def create_players
-    100.times do |i|
-      AtpRankingsTop100Cli::Scraper.new.scrape_from_index(i)
-    end
   end
 
   def start
