@@ -3,7 +3,7 @@ class AtpRankingsTop100Cli::Player
 
   @@all= []
 
-  def initialize(name=nil, rank=nil, age=nil, points=nil, country=nil, num_tourns_played=nil, bio_link=nil)
+  def initialize
     @name = name
     @rank = rank
     @age = age

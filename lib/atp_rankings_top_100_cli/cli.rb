@@ -80,7 +80,6 @@ class AtpRankingsTop100Cli::CLI
     else
       puts
       puts "Invalid Input"
-      puts
       start
     end
   end
