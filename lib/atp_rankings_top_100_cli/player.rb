@@ -4,10 +4,6 @@ class AtpRankingsTop100Cli::Player
   @@all= []
 
   def initialize
-    @name = name
-    @rank = rank
-    @age = age
-    @points = points
     @@all << self
   end
 
