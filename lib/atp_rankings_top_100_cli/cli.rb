@@ -81,18 +81,6 @@ class AtpRankingsTop100Cli::CLI
     if (1..100).include?(@@menu_input_1.to_i)
       more_info(@@menu_input_1.to_i)
       see_another_player
-      #puts "Would you like to see another player from this range? [y/n]"
-#      @@menu_input_2 = gets.chomp
-#      if @@menu_input_2 == "y"
-#        list_range
-#      elsif @@menu_input_2 == "n"
-#        start
-#      elsif @@menu_input_2 == "exit"
-#        goodbye
-#      else
-#        puts "Invalid Input"
-#        menu
-#      end
     elsif @@menu_input_1 == "exit"
       goodbye
     else
