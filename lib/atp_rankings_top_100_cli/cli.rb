@@ -79,6 +79,7 @@ class AtpRankingsTop100Cli::CLI
   def menu
     puts "Enter player number for more information:"
     @menu_input = gets.chomp
+
     if @range_checker.include?(@menu_input.to_i)
       more_info(@menu_input.to_i)
       see_another_player
@@ -95,6 +96,7 @@ class AtpRankingsTop100Cli::CLI
     puts
     puts "Would you like to see another player from this range? [y/n]"
     @sap_input = gets.chomp
+
     if @sap_input == "y"
       list_range
     elsif @sap_input == "n"

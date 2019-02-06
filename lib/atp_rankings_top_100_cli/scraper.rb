@@ -2,6 +2,7 @@ class AtpRankingsTop100Cli::Scraper
 
   def scrape_players
     @doc = Nokogiri::HTML(open("https://www.atptour.com/en/rankings/singles"))
+
     @doc.search("tbody tr").each do |player_tr|
       player = AtpRankingsTop100Cli::Player.new
       player.name = player_tr.search(".player-cell").text.strip
