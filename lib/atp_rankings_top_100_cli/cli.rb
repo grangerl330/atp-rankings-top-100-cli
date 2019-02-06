@@ -125,6 +125,7 @@ class AtpRankingsTop100Cli::CLI
     puts "Rank: #{AtpRankingsTop100Cli::Player.all[input-1].rank}"
     puts "Points: #{AtpRankingsTop100Cli::Player.all[input-1].points}"
     puts "Tournaments Played: #{AtpRankingsTop100Cli::Player.all[input-1].num_tourns_played}"
+    puts "Bio Link: #{AtpRankingsTop100Cli::Player.all[input-1].bio_link}"
   end
 
   def goodbye
