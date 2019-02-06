@@ -36,46 +36,46 @@ class AtpRankingsTop100Cli::CLI
     puts "81-90"
     puts "91-100"
     puts
-    @@rc_input = gets.chomp
+    @rc_input = gets.chomp
   end
 
   def list_range
-    if (1..100).include?(@@rc_input.to_i)
+    if (1..100).include?(@rc_input.to_i)
       puts
-      if (1..10).include?(@@rc_input.to_i)
+      if (1..10).include?(@rc_input.to_i)
         AtpRankingsTop100Cli::Player.all[0..9].each_with_index {|player, index| puts "#{index+1}. #{player.name}"}
-        @@range_checker = (1..10).to_a
-      elsif (11..20).include?(@@rc_input.to_i)
+        @range_checker = (1..10).to_a
+      elsif (11..20).include?(@rc_input.to_i)
         AtpRankingsTop100Cli::Player.all[10..19].each_with_index {|player, index| puts "#{index+11}. #{player.name}"}
-        @@range_checker = (11..20).to_a
-      elsif (21..30).include?(@@rc_input.to_i)
+        @range_checker = (11..20).to_a
+      elsif (21..30).include?(@rc_input.to_i)
         AtpRankingsTop100Cli::Player.all[20..29].each_with_index {|player, index| puts "#{index+21}. #{player.name}"}
-        @@range_checker = (21..30).to_a
-      elsif (31..40).include?(@@rc_input.to_i)
+        @range_checker = (21..30).to_a
+      elsif (31..40).include?(@rc_input.to_i)
         AtpRankingsTop100Cli::Player.all[30..39].each_with_index {|player, index| puts "#{index+31}. #{player.name}"}
-        @@range_checker = (31..40).to_a
-      elsif (41..50).include?(@@rc_input.to_i)
+        @range_checker = (31..40).to_a
+      elsif (41..50).include?(@rc_input.to_i)
         AtpRankingsTop100Cli::Player.all[40..49].each_with_index {|player, index| puts "#{index+41}. #{player.name}"}
-        @@range_checker = (41..50).to_a
-      elsif (51..60).include?(@@rc_input.to_i)
+        @range_checker = (41..50).to_a
+      elsif (51..60).include?(@rc_input.to_i)
         AtpRankingsTop100Cli::Player.all[50..59].each_with_index {|player, index| puts "#{index+51}. #{player.name}"}
-        @@range_checker = (51..60).to_a
-      elsif (61..70).include?(@@rc_input.to_i)
+        @range_checker = (51..60).to_a
+      elsif (61..70).include?(@rc_input.to_i)
         AtpRankingsTop100Cli::Player.all[60..69].each_with_index {|player, index| puts "#{index+61}. #{player.name}"}
-        @@range_checker = (61..70).to_a
-      elsif (71..80).include?(@@rc_input.to_i)
+        @range_checker = (61..70).to_a
+      elsif (71..80).include?(@rc_input.to_i)
         AtpRankingsTop100Cli::Player.all[70..79].each_with_index {|player, index| puts "#{index+71}. #{player.name}"}
-        @@range_checker = (71..80).to_a
-      elsif (81..90).include?(@@rc_input.to_i)
+        @range_checker = (71..80).to_a
+      elsif (81..90).include?(@rc_input.to_i)
         AtpRankingsTop100Cli::Player.all[80..89].each_with_index {|player, index| puts "#{index+81}. #{player.name}"}
-        @@range_checker = (81..90).to_a
-      elsif (91..100).include?(@@rc_input.to_i)
+        @range_checker = (81..90).to_a
+      elsif (91..100).include?(@rc_input.to_i)
         AtpRankingsTop100Cli::Player.all[90..99].each_with_index {|player, index| puts "#{index+91}. #{player.name}"}
-        @@range_checker = (91..100).to_a
+        @range_checker = (91..100).to_a
       end
       puts
       menu
-    elsif @@rc_input == "exit"
+    elsif @rc_input == "exit"
       goodbye
     else
       puts
@@ -87,11 +87,11 @@ class AtpRankingsTop100Cli::CLI
 
   def menu
     puts "Enter player number for more information:"
-    @@menu_input_1 = gets.chomp
-    if @@range_checker.include?(@@menu_input_1.to_i)
-      more_info(@@menu_input_1.to_i)
+    @menu_input_1 = gets.chomp
+    if @range_checker.include?(@menu_input_1.to_i)
+      more_info(@menu_input_1.to_i)
       see_another_player
-    elsif @@menu_input_1 == "exit"
+    elsif @menu_input_1 == "exit"
       goodbye
     else
       puts
@@ -103,12 +103,12 @@ class AtpRankingsTop100Cli::CLI
   def see_another_player
     puts
     puts "Would you like to see another player from this range? [y/n]"
-    @@sap_input = gets.chomp
-    if @@sap_input == "y"
+    @sap_input = gets.chomp
+    if @sap_input == "y"
       list_range
-    elsif @@sap_input == "n"
+    elsif @sap_input == "n"
       start
-    elsif @@sap_input == "exit"
+    elsif @sap_input == "exit"
       goodbye
     else
       puts
