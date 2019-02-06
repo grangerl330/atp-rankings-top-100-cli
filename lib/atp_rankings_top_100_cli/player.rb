@@ -1,9 +1,9 @@
 class AtpRankingsTop100Cli::Player
-  attr_accessor :name, :rank, :age, :points, :country
+  attr_accessor :name, :rank, :age, :points, :country, :num_tourns_played
 
   @@all= []
 
-  def initialize(name=nil, rank=nil, age=nil, points=nil, country=nil)
+  def initialize(name=nil, rank=nil, age=nil, points=nil, country=nil, num_tourns_played=nil)
     @name = name
     @rank = rank
     @age = age
@@ -20,6 +20,7 @@ class AtpRankingsTop100Cli::Player
     player.age = doc.css("td.age-cell")[index].text.strip
     player.country = country_array[index]
     player.rank = "#{index+1}"
+    player.num_tourns_played = doc.css(".tourn-cell")[index].text.strip
   end
 
   def self.all

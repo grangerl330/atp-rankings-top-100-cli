@@ -7,7 +7,6 @@ class AtpRankingsTop100Cli::CLI
     puts
     puts "Please wait while the list loads..."
     create_players
-    puts
     start
   end
 
@@ -23,7 +22,8 @@ class AtpRankingsTop100Cli::CLI
   end
 
   def range_choice
-    puts "Which range would you like to see?"
+    puts
+    puts "Which rankings range would you like to see?"
     puts
     puts "1-10"
     puts "11-20"
@@ -124,6 +124,7 @@ class AtpRankingsTop100Cli::CLI
     puts "Country: #{AtpRankingsTop100Cli::Player.all[input-1].country}"
     puts "Rank: #{AtpRankingsTop100Cli::Player.all[input-1].rank}"
     puts "Points: #{AtpRankingsTop100Cli::Player.all[input-1].points}"
+    puts "Tournaments Played: #{AtpRankingsTop100Cli::Player.all[input-1].num_tourns_played}"
   end
 
   def goodbye
