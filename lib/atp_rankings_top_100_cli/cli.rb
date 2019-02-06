@@ -78,11 +78,11 @@ class AtpRankingsTop100Cli::CLI
 
   def menu
     puts "Enter player number for more information:"
-    @menu_input_1 = gets.chomp
-    if @range_checker.include?(@menu_input_1.to_i)
-      more_info(@menu_input_1.to_i)
+    @menu_input = gets.chomp
+    if @range_checker.include?(@menu_input.to_i)
+      more_info(@menu_input.to_i)
       see_another_player
-    elsif @menu_input_1 == "exit"
+    elsif @menu_input == "exit"
       goodbye
     else
       puts
