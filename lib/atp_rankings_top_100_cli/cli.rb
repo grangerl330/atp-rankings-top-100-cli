@@ -19,32 +19,7 @@ class AtpRankingsTop100Cli::CLI
 
   def start
     range_choice
-    if (1..100).include?(@@input.to_i)
-      puts
-      list_range(@@input.to_i)
-      puts
-      menu
-      puts
-      if (1..100).include?(@@input.to_i)
-        more_info(@@input.to_i)
-        puts
-        sleep(5)
-        start
-      elsif @@input == "exit"
-        goodbye
-      else
-        puts "Invalid Input"
-        puts
-        start
-      end
-    elsif @@input == "exit"
-      goodbye
-    else
-      puts
-      puts "Invalid Input"
-      puts
-      start
-    end
+    list_range
   end
 
   def range_choice
@@ -61,39 +36,91 @@ class AtpRankingsTop100Cli::CLI
     puts "81-90"
     puts "91-100"
     puts
-    @@input = gets.strip
+    @@rc_input = gets.chomp
   end
 
-  def list_range(input)
-    if (1..10).include?(input)
-      AtpRankingsTop100Cli::Player.all[0..9].each_with_index {|player, index| puts "#{index+1}. #{player.name}"}
-    elsif (11..20).include?(input)
-      AtpRankingsTop100Cli::Player.all[10..19].each_with_index {|player, index| puts "#{index+11}. #{player.name}"}
-    elsif (21..30).include?(input)
-      AtpRankingsTop100Cli::Player.all[20..29].each_with_index {|player, index| puts "#{index+21}. #{player.name}"}
-    elsif (31..40).include?(input)
-      AtpRankingsTop100Cli::Player.all[30..39].each_with_index {|player, index| puts "#{index+31}. #{player.name}"}
-    elsif (41..50).include?(input)
-      AtpRankingsTop100Cli::Player.all[40..49].each_with_index {|player, index| puts "#{index+41}. #{player.name}"}
-    elsif (51..60).include?(input)
-      AtpRankingsTop100Cli::Player.all[50..59].each_with_index {|player, index| puts "#{index+51}. #{player.name}"}
-    elsif (61..70).include?(input)
-      AtpRankingsTop100Cli::Player.all[60..69].each_with_index {|player, index| puts "#{index+61}. #{player.name}"}
-    elsif (71..80).include?(input)
-      AtpRankingsTop100Cli::Player.all[70..79].each_with_index {|player, index| puts "#{index+71}. #{player.name}"}
-    elsif (81..90).include?(input)
-      AtpRankingsTop100Cli::Player.all[80..89].each_with_index {|player, index| puts "#{index+81}. #{player.name}"}
-    elsif (91..100).include?(input)
-      AtpRankingsTop100Cli::Player.all[90..99].each_with_index {|player, index| puts "#{index+91}. #{player.name}"}
+  def list_range
+    if (1..100).include?(@@rc_input.to_i)
+      puts
+      if (1..10).include?(@@rc_input.to_i)
+        AtpRankingsTop100Cli::Player.all[0..9].each_with_index {|player, index| puts "#{index+1}. #{player.name}"}
+      elsif (11..20).include?(@@rc_input.to_i)
+        AtpRankingsTop100Cli::Player.all[10..19].each_with_index {|player, index| puts "#{index+11}. #{player.name}"}
+      elsif (21..30).include?(@@rc_input.to_i)
+        AtpRankingsTop100Cli::Player.all[20..29].each_with_index {|player, index| puts "#{index+21}. #{player.name}"}
+      elsif (31..40).include?(@@rc_input.to_i)
+        AtpRankingsTop100Cli::Player.all[30..39].each_with_index {|player, index| puts "#{index+31}. #{player.name}"}
+      elsif (41..50).include?(@@rc_input.to_i)
+        AtpRankingsTop100Cli::Player.all[40..49].each_with_index {|player, index| puts "#{index+41}. #{player.name}"}
+      elsif (51..60).include?(@@rc_input.to_i)
+        AtpRankingsTop100Cli::Player.all[50..59].each_with_index {|player, index| puts "#{index+51}. #{player.name}"}
+      elsif (61..70).include?(@@rc_input.to_i)
+        AtpRankingsTop100Cli::Player.all[60..69].each_with_index {|player, index| puts "#{index+61}. #{player.name}"}
+      elsif (71..80).include?(@@rc_input.to_i)
+        AtpRankingsTop100Cli::Player.all[70..79].each_with_index {|player, index| puts "#{index+71}. #{player.name}"}
+      elsif (81..90).include?(@@rc_input.to_i)
+        AtpRankingsTop100Cli::Player.all[80..89].each_with_index {|player, index| puts "#{index+81}. #{player.name}"}
+      elsif (91..100).include?(@@rc_input.to_i)
+        AtpRankingsTop100Cli::Player.all[90..99].each_with_index {|player, index| puts "#{index+91}. #{player.name}"}
+      end
+      puts
+      menu
+    elsif @@rc_input == "exit"
+      goodbye
+    else
+      puts
+      puts "Invalid Input"
+      puts
+      start
     end
   end
 
   def menu
     puts "Enter player number for more information:"
-    @@input = gets.strip
+    @@menu_input_1 = gets.chomp
+    if (1..100).include?(@@menu_input_1.to_i)
+      more_info(@@menu_input_1.to_i)
+      see_another_player
+      #puts "Would you like to see another player from this range? [y/n]"
+#      @@menu_input_2 = gets.chomp
+#      if @@menu_input_2 == "y"
+#        list_range
+#      elsif @@menu_input_2 == "n"
+#        start
+#      elsif @@menu_input_2 == "exit"
+#        goodbye
+#      else
+#        puts "Invalid Input"
+#        menu
+#      end
+    elsif @@menu_input_1 == "exit"
+      goodbye
+    else
+      puts
+      puts "Invalid Input"
+      list_range
+    end
+  end
+
+  def see_another_player
+    puts
+    puts "Would you like to see another player from this range? [y/n]"
+    @@sap_input = gets.chomp
+    if @@sap_input == "y"
+      list_range
+    elsif @@sap_input == "n"
+      start
+    elsif @@sap_input == "exit"
+      goodbye
+    else
+      puts 
+      puts "Invalid Input"
+      see_another_player
+    end
   end
 
   def more_info(input)
+    puts
     puts "Name: #{AtpRankingsTop100Cli::Player.all[input-1].name}"
     puts "Age: #{AtpRankingsTop100Cli::Player.all[input-1].age}"
     puts "Country: #{AtpRankingsTop100Cli::Player.all[input-1].country}"
@@ -104,6 +131,7 @@ class AtpRankingsTop100Cli::CLI
   def goodbye
     puts
     puts "Thank you for using ATP Rankings Top 100!"
+    exit
   end
 
 end
