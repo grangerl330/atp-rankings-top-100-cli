@@ -28,27 +28,27 @@ class AtpRankingsTop100Cli::Player
   end
 
   def weight
-    @weight = doc.css(".table-big-value")[2].text.strip
+    @weight ||= doc.css(".table-big-value")[2].text.strip
   end
 
   def height
-    @height = doc.css(".table-big-value")[3].text.strip
+    @height ||= doc.css(".table-big-value")[3].text.strip
   end
 
   def birthplace
-    @birthplace = doc.css(".table-value")[0].text.strip
+    @birthplace ||= doc.css(".table-value")[0].text.strip
   end
 
   def residence
-    @residence = doc.css(".table-value")[1].text.strip
+    @residence ||= doc.css(".table-value")[1].text.strip
   end
 
   def plays
-    @plays = doc.css(".table-value")[2].text.strip
+    @plays ||= doc.css(".table-value")[2].text.strip
   end
 
   def coach
-    @coach = doc.css(".table-value")[3].text.strip
+    @coach ||= doc.css(".table-value")[3].text.strip
   end
 
 end

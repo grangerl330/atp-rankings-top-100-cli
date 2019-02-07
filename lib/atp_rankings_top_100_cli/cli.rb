@@ -80,9 +80,11 @@ class AtpRankingsTop100Cli::CLI
   def menu
     puts "Enter player number for more information:"
     @menu_input = gets.chomp
+    @player = AtpRankingsTop100Cli::Player.find(@menu_input.to_i)
 
     if @range_checker.include?(@menu_input.to_i)
-      more_info(@menu_input.to_i)
+      more_info
+      see_additional_info(@player)
       see_another_player
     elsif @menu_input == "exit"
       goodbye
@@ -111,15 +113,41 @@ class AtpRankingsTop100Cli::CLI
     end
   end
 
-  def more_info(input)
+  def more_info
     puts
-    puts "Name: #{AtpRankingsTop100Cli::Player.all[input-1].name}"
-    puts "Age: #{AtpRankingsTop100Cli::Player.all[input-1].age}"
-    puts "Country: #{AtpRankingsTop100Cli::Player.all[input-1].country}"
-    puts "Rank: #{AtpRankingsTop100Cli::Player.all[input-1].rank}"
-    puts "Points: #{AtpRankingsTop100Cli::Player.all[input-1].points}"
-    puts "Tournaments Played: #{AtpRankingsTop100Cli::Player.all[input-1].num_tourns_played}"
-    puts "Bio Link: #{AtpRankingsTop100Cli::Player.all[input-1].bio_link}"
+    puts "Name: #{@player.name}"
+    puts "Age: #{@player.age}"
+    puts "Country: #{@player.country}"
+    puts "Rank: #{@player.rank}"
+    puts "Points: #{@player.points}"
+    puts "Tournaments Played: #{@player.num_tourns_played}"
+  end
+
+  def see_additional_info(player)
+    puts
+    puts "Would you like to see additional info on this player? [y/n]"
+    @see_additional_info_input = gets.chomp
+
+    if @see_additional_info_input == "y"
+      puts
+      puts "Additional Info:"
+      puts
+      puts "Turned pro: #{@player.turned_pro}"
+      puts "Weight: #{@player.weight}"
+      puts "Height: #{@player.height}"
+      puts "Birthplace: #{@player.birthplace}"
+      puts "Residence: #{@player.residence}"
+      puts "Plays: #{@player.plays}"
+      puts "Coach: #{@player.coach}"
+    elsif @see_additional_info_input == "n"
+      see_another_player
+    elsif @see_additional_info_input == "exit"
+      goodbye
+    else
+      puts
+      puts "Invalid Input"
+      see_additional_info(@player)
+    end
   end
 
   def goodbye
