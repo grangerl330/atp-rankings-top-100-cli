@@ -102,7 +102,7 @@ class AtpRankingsTop100Cli::CLI
 
   def stay_in_range
     puts
-    puts "Would you like to stay this rankings range? [y/n]"
+    puts "Would you like to stay in this rankings range? [y/n]"
     @stay_in_range_input = gets.chomp
 
     if @stay_in_range_input == "y"
@@ -158,6 +158,7 @@ class AtpRankingsTop100Cli::CLI
   def goodbye
     puts
     puts "Thank you for using ATP Rankings Top 100!"
+    puts 
     exit
   end
 
