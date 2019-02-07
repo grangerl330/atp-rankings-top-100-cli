@@ -15,8 +15,7 @@ class AtpRankingsTop100Cli::CLI
 
   def range_choice
     puts
-    puts "Which rankings range would you like to see?"
-    puts
+    puts "Rankings Ranges:"
     puts "1-10"
     puts "11-20"
     puts "21-30"
@@ -28,6 +27,7 @@ class AtpRankingsTop100Cli::CLI
     puts "81-90"
     puts "91-100"
     puts
+    puts "Type a number in the range you would like to see or type all to see all 100 players"
     @range_choice_input = gets.chomp
   end
 
@@ -66,7 +66,10 @@ class AtpRankingsTop100Cli::CLI
           AtpRankingsTop100Cli::Player.list(90, 99)
           @range_checker = (91..100).to_a
         end
-      puts
+      menu
+    elsif @range_choice_input == "all"
+      AtpRankingsTop100Cli::Player.list(0, 99)
+      @range_checker = (1..100).to_a
       menu
     elsif @range_choice_input == "exit"
       goodbye
@@ -78,6 +81,7 @@ class AtpRankingsTop100Cli::CLI
   end
 
   def menu
+    puts
     puts "Enter player number for more information:"
     @menu_input = gets.chomp
     @player = AtpRankingsTop100Cli::Player.find(@menu_input.to_i)
@@ -85,7 +89,7 @@ class AtpRankingsTop100Cli::CLI
     if @range_checker.include?(@menu_input.to_i)
       more_info
       see_additional_info(@player)
-      see_another_player
+      stay_in_range
     elsif @menu_input == "exit"
       goodbye
     else
@@ -95,21 +99,21 @@ class AtpRankingsTop100Cli::CLI
     end
   end
 
-  def see_another_player
+  def stay_in_range
     puts
-    puts "Would you like to see another player from this range? [y/n]"
-    @see_another_player_input = gets.chomp
+    puts "Would you like to stay this rankings range? [y/n]"
+    @stay_in_range_input = gets.chomp
 
-    if @see_another_player_input == "y"
+    if @stay_in_range_input == "y"
       list_range
-    elsif @see_another_player_input == "n"
+    elsif @stay_in_range_input == "n"
       start
-    elsif @see_another_player_input == "exit"
+    elsif @stay_in_range_input == "exit"
       goodbye
     else
       puts
       puts "Invalid Input"
-      see_another_player
+      stay_in_range
     end
   end
 
@@ -140,7 +144,7 @@ class AtpRankingsTop100Cli::CLI
       puts "Plays: #{@player.plays}"
       puts "Coach: #{@player.coach}"
     elsif @see_additional_info_input == "n"
-      see_another_player
+      stay_in_range
     elsif @see_additional_info_input == "exit"
       goodbye
     else
