@@ -11,4 +11,8 @@ class AtpRankingsTop100Cli::Player
     @@all
   end
 
+  def self.list(start_of_range, end_of_range)
+    @@all[start_of_range..end_of_range].each_with_index {|player, index| puts "#{index + start_of_range + 1}. #{player.name}"}
+  end
+
 end

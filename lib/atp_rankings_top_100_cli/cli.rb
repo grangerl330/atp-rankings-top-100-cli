@@ -34,37 +34,38 @@ class AtpRankingsTop100Cli::CLI
   def list_range
     if (1..100).include?(@range_choice_input.to_i)
       puts
-      if (1..10).include?(@range_choice_input.to_i)
-        AtpRankingsTop100Cli::Player.all[0..9].each_with_index {|player, index| puts "#{index+1}. #{player.name}"}
-        @range_checker = (1..10).to_a
-      elsif (11..20).include?(@range_choice_input.to_i)
-        AtpRankingsTop100Cli::Player.all[10..19].each_with_index {|player, index| puts "#{index+11}. #{player.name}"}
-        @range_checker = (11..20).to_a
-      elsif (21..30).include?(@range_choice_input.to_i)
-        AtpRankingsTop100Cli::Player.all[20..29].each_with_index {|player, index| puts "#{index+21}. #{player.name}"}
-        @range_checker = (21..30).to_a
-      elsif (31..40).include?(@range_choice_input.to_i)
-        AtpRankingsTop100Cli::Player.all[30..39].each_with_index {|player, index| puts "#{index+31}. #{player.name}"}
-        @range_checker = (31..40).to_a
-      elsif (41..50).include?(@range_choice_input.to_i)
-        AtpRankingsTop100Cli::Player.all[40..49].each_with_index {|player, index| puts "#{index+41}. #{player.name}"}
-        @range_checker = (41..50).to_a
-      elsif (51..60).include?(@range_choice_input.to_i)
-        AtpRankingsTop100Cli::Player.all[50..59].each_with_index {|player, index| puts "#{index+51}. #{player.name}"}
-        @range_checker = (51..60).to_a
-      elsif (61..70).include?(@range_choice_input.to_i)
-        AtpRankingsTop100Cli::Player.all[60..69].each_with_index {|player, index| puts "#{index+61}. #{player.name}"}
-        @range_checker = (61..70).to_a
-      elsif (71..80).include?(@range_choice_input.to_i)
-        AtpRankingsTop100Cli::Player.all[70..79].each_with_index {|player, index| puts "#{index+71}. #{player.name}"}
-        @range_checker = (71..80).to_a
-      elsif (81..90).include?(@range_choice_input.to_i)
-        AtpRankingsTop100Cli::Player.all[80..89].each_with_index {|player, index| puts "#{index+81}. #{player.name}"}
-        @range_checker = (81..90).to_a
-      elsif (91..100).include?(@range_choice_input.to_i)
-        AtpRankingsTop100Cli::Player.all[90..99].each_with_index {|player, index| puts "#{index+91}. #{player.name}"}
-        @range_checker = (91..100).to_a
-      end
+      case @range_choice_input.to_i
+        when (1..10)
+          AtpRankingsTop100Cli::Player.list(0, 9)
+          @range_checker = (1..10).to_a
+        when (11..20)
+          AtpRankingsTop100Cli::Player.list(10, 19)
+          @range_checker = (11..20).to_a
+        when (21..30)
+          AtpRankingsTop100Cli::Player.list(20, 29)
+          @range_checker = (21..30).to_a
+        when (31..40)
+          AtpRankingsTop100Cli::Player.list(30, 39)
+          @range_checker = (31..40).to_a
+        when (41..50)
+          AtpRankingsTop100Cli::Player.list(40, 49)
+          @range_checker = (41..50).to_a
+        when (51..60)
+          AtpRankingsTop100Cli::Player.list(50, 59)
+          @range_checker = (51..60).to_a
+        when (61..70)
+          AtpRankingsTop100Cli::Player.list(60, 69)
+          @range_checker = (61..70).to_a
+        when (71..80)
+          AtpRankingsTop100Cli::Player.list(70, 79)
+          @range_checker = (71..80).to_a
+        when (81..90)
+          AtpRankingsTop100Cli::Player.list(80, 89)
+          @range_checker = (81..90).to_a
+        when (91..100)
+          AtpRankingsTop100Cli::Player.list(90, 99)
+          @range_checker = (91..100).to_a
+        end
       puts
       menu
     elsif @range_choice_input == "exit"
