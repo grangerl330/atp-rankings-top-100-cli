@@ -1,6 +1,7 @@
 class AtpRankingsTop100Cli::CLI
 
   def call
+    puts
     puts "Welcome to ATP Rankings Top 100!"
     puts
     puts "Type exit at any time to exit the program"
