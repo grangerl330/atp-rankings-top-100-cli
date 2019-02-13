@@ -32,45 +32,26 @@ class AtpRankingsTop100Cli::CLI
     @range_choice_input = gets.chomp
   end
 
+  def list(start_index)
+    puts "Ranks #{start_index + 1} - #{start_index + 11}:"
+    AtpRankingsTop100Cli::Player.all[start_index..start_index+10].each_with_index {|player, index| puts "#{index + start_index + 1}. #{player.name}"}
+  end
+
+  def list_all
+    puts "Ranks 1 - 100:"
+    AtpRankingsTop100Cli::Player.all.each_with_index {|player, index| puts "#{index + 1}. #{player.name}"}
+  end
+
   def list_range
     if (1..100).include?(@range_choice_input.to_i)
       puts
-      case @range_choice_input.to_i
-      when (1..10)
-        AtpRankingsTop100Cli::Player.list(0, 9)
-        @range_checker = (1..10).to_a
-      when (11..20)
-        AtpRankingsTop100Cli::Player.list(10, 19)
-        @range_checker = (11..20).to_a
-      when (21..30)
-        AtpRankingsTop100Cli::Player.list(20, 29)
-        @range_checker = (21..30).to_a
-      when (31..40)
-        AtpRankingsTop100Cli::Player.list(30, 39)
-        @range_checker = (31..40).to_a
-      when (41..50)
-        AtpRankingsTop100Cli::Player.list(40, 49)
-        @range_checker = (41..50).to_a
-      when (51..60)
-        AtpRankingsTop100Cli::Player.list(50, 59)
-        @range_checker = (51..60).to_a
-      when (61..70)
-        AtpRankingsTop100Cli::Player.list(60, 69)
-        @range_checker = (61..70).to_a
-      when (71..80)
-        AtpRankingsTop100Cli::Player.list(70, 79)
-        @range_checker = (71..80).to_a
-      when (81..90)
-        AtpRankingsTop100Cli::Player.list(80, 89)
-        @range_checker = (81..90).to_a
-      when (91..100)
-        AtpRankingsTop100Cli::Player.list(90, 99)
-        @range_checker = (91..100).to_a
-      end
+      index = @range_choice_input.to_i - @range_choice_input.to_i % 10
+      list(index)
+      @range_checker = (index + 1..index + 10).to_a
       menu
     elsif @range_choice_input.downcase == "all"
       puts
-      AtpRankingsTop100Cli::Player.list(0, 99)
+      list_all
       @range_checker = (1..100).to_a
       menu
     elsif @range_choice_input.downcase == "exit"
@@ -86,11 +67,10 @@ class AtpRankingsTop100Cli::CLI
     puts
     puts "Enter player number for more information:"
     @menu_input = gets.chomp
-    @player = AtpRankingsTop100Cli::Player.find(@menu_input.to_i)
-
+    player = AtpRankingsTop100Cli::Player.find(@menu_input.to_i)
     if @range_checker.include?(@menu_input.to_i)
-      more_info
-      see_additional_info(@player)
+      more_info(player)
+      see_additional_info(player)
       stay_in_range
     elsif @menu_input.downcase == "exit"
       goodbye
@@ -104,13 +84,13 @@ class AtpRankingsTop100Cli::CLI
   def stay_in_range
     puts
     puts "Would you like to stay in this rankings range? [y/n]"
-    @stay_in_range_input = gets.chomp
+    stay_in_range_input = gets.chomp
 
-    if @stay_in_range_input.downcase == "y"
+    if stay_in_range_input.downcase == "y"
       list_range
-    elsif @stay_in_range_input.downcase == "n"
+    elsif stay_in_range_input.downcase == "n"
       start
-    elsif @stay_in_range_input.downcase == "exit"
+    elsif stay_in_range_input.downcase == "exit"
       goodbye
     else
       puts
@@ -119,40 +99,40 @@ class AtpRankingsTop100Cli::CLI
     end
   end
 
-  def more_info
+  def more_info(player)
     puts
-    puts "Name: #{@player.name}"
-    puts "Age: #{@player.age}"
-    puts "Country: #{@player.country}"
-    puts "Rank: #{@player.rank}"
-    puts "Points: #{@player.points}"
-    puts "Tournaments Played: #{@player.num_tourns_played}"
+    puts "Name: #{player.name}"
+    puts "Age: #{player.age}"
+    puts "Country: #{player.country}"
+    puts "Rank: #{player.rank}"
+    puts "Points: #{player.points}"
+    puts "Tournaments Played: #{player.num_tourns_played}"
   end
 
   def see_additional_info(player)
     puts
     puts "Would you like to see additional info on this player? [y/n]"
-    @see_additional_info_input = gets.chomp
+    see_additional_info_input = gets.chomp
 
-    if @see_additional_info_input.downcase == "y"
+    if see_additional_info_input.downcase == "y"
       puts
       puts "Additional Info:"
       puts
-      puts "Turned pro: #{@player.turned_pro}"
-      puts "Weight: #{@player.weight}"
-      puts "Height: #{@player.height}"
-      puts "Birthplace: #{@player.birthplace}"
-      puts "Residence: #{@player.residence}"
-      puts "Plays: #{@player.plays}"
-      puts "Coach: #{@player.coach}"
-    elsif @see_additional_info_input.downcase == "n"
+      puts "Turned pro: #{player.turned_pro}"
+      puts "Weight: #{player.weight}"
+      puts "Height: #{player.height}"
+      puts "Birthplace: #{player.birthplace}"
+      puts "Residence: #{player.residence}"
+      puts "Plays: #{player.plays}"
+      puts "Coach: #{player.coach}"
+    elsif see_additional_info_input.downcase == "n"
       stay_in_range
-    elsif @see_additional_info_input.downcase == "exit"
+    elsif see_additional_info_input.downcase == "exit"
       goodbye
     else
       puts
       puts "Invalid Input"
-      see_additional_info(@player)
+      see_additional_info(player)
     end
   end
 
