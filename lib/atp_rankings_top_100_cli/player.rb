@@ -20,7 +20,7 @@ class AtpRankingsTop100Cli::Player
   end
 
   def turned_pro
-    @turned_pro = doc.css(".table-big-value")[1].text.strip
+    @turned_pro ||= doc.css(".table-big-value")[1].text.strip
   end
 
   def weight

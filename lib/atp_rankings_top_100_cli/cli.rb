@@ -33,8 +33,8 @@ class AtpRankingsTop100Cli::CLI
   end
 
   def list(start_index)
-    puts "Ranks #{start_index + 1} - #{start_index + 11}:"
-    AtpRankingsTop100Cli::Player.all[start_index..start_index+10].each_with_index {|player, index| puts "#{index + start_index + 1}. #{player.name}"}
+    puts "Ranks #{start_index + 1} - #{start_index + 10}:"
+    AtpRankingsTop100Cli::Player.all[start_index..start_index + 9].each_with_index {|player, index| puts "#{index + start_index + 1}. #{player.name}"}
   end
 
   def list_all
@@ -45,9 +45,9 @@ class AtpRankingsTop100Cli::CLI
   def list_range
     if (1..100).include?(@range_choice_input.to_i)
       puts
-      index = @range_choice_input.to_i - @range_choice_input.to_i % 10
-      list(index)
-      @range_checker = (index + 1..index + 10).to_a
+      start_index = @range_choice_input.to_i - @range_choice_input.to_i % 10
+      list(start_index)
+      @range_checker = (start_index + 1..start_index + 10).to_a
       menu
     elsif @range_choice_input.downcase == "all"
       puts
@@ -66,13 +66,13 @@ class AtpRankingsTop100Cli::CLI
   def menu
     puts
     puts "Enter player number for more information:"
-    @menu_input = gets.chomp
-    player = AtpRankingsTop100Cli::Player.find(@menu_input.to_i)
-    if @range_checker.include?(@menu_input.to_i)
+    menu_input = gets.chomp
+    player = AtpRankingsTop100Cli::Player.find(menu_input.to_i)
+    if @range_checker.include?(menu_input.to_i)
       more_info(player)
       see_additional_info(player)
       stay_in_range
-    elsif @menu_input.downcase == "exit"
+    elsif menu_input.downcase == "exit"
       goodbye
     else
       puts
