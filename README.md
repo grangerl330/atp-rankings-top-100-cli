@@ -1,14 +1,16 @@
 # AtpRankingsTop100Cli
 
+## About
 This Ruby gem provides a CLI to view the top 100 rankings list from the ATP and provides information for each of the players on the list.
 
-## Installation
+## Initial Setup
+This project is supported by Bundler and includes a `Gemfile`.
 
-    $ gem install atp_rankings_top_100_cli
+Run `bundle install` before running the program.
 
-## Usage
+## Running The Program
 
-Run the gem and follow the on screen prompts 
+Run the gem with `bin/run_program` and follow the prompts in the console.
 
 ## Development
 
