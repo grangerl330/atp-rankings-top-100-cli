@@ -10,7 +10,7 @@ Run `bundle install` before running the program.
 
 ## Running The Program
 
-Run the gem with `bin/run_program` and follow the prompts in the console.
+Run the gem with `bin/run` and follow the prompts in the console.
 
 ## Development
 

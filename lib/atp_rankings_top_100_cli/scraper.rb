@@ -1,7 +1,7 @@
 class AtpRankingsTop100Cli::Scraper
 
   def scrape_players
-    @doc = Nokogiri::HTML(open("https://www.atptour.com/en/rankings/singles"))
+    @doc = Nokogiri::HTML(URI.open("https://www.atptour.com/en/rankings/singles"))
 
     @doc.css("tbody tr").map do |player_tr|
       player = AtpRankingsTop100Cli::Player.new
