@@ -3,20 +3,22 @@
 ## About
 This Ruby gem provides a CLI to view the top 100 rankings list from the ATP and provides information for each of the players on the list.
 
-## Initial Setup
+## Environment Setup
+In order to run this program you must have Ruby installed in your local environment.
+
+If you do not have Ruby installed, you can get it [here](https://www.ruby-lang.org/en/documentation/installation/)
+
+## Installing The Program
+
+Clone or download the project from [github](https://github.com/grangerl330/atp-rankings-top-100-cli) and follow the instructions below to install on your local machine.
+
 This project is supported by Bundler and includes a `Gemfile`.
 
 Run `bundle install` before running the program.
 
 ## Running The Program
 
-Run the gem with `bin/run` and follow the prompts in the console.
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+Run the program with the command `bin/run` and follow the prompts in the console.
 
 ## Contributing
 
